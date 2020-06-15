@@ -1,36 +1,39 @@
+
 import * as React from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+//Screens
+import CriarConta from './src/screens/CriarConta';
+import Login from './src/screens/Login';
+//Redux
+import { Provider } from 'react-redux';
+import store from './src/store';
 
-const instructions = Platform.select({
-  ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
-  android: `Double tap R on your keyboard to reload,\nShake or press menu button for dev menu`,
-});
+const Stack = createStackNavigator();
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.welcome}>Welcome to React Native!</Text>
-      <Text style={styles.instructions}>To get started, edit App.js</Text>
-      <Text style={styles.instructions}>{instructions}</Text>
-    </View>
-  );
+class App extends React.Component {
+
+  render() {
+
+    return (
+
+      <>
+      <StatusBar barStyle = "dark-content" />
+      <Provider store = { store }>
+        <NavigationContainer>
+          <Stack.Navigator headerMode="null">
+            <Stack.Screen name = "CriarConta" component = { CriarConta } />
+            <Stack.Screen name = "Login" component = { Login } />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Provider>
+      </>
+
+    );
+
+  }
+
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+export default App;
