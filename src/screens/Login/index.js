@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableHighlight, StyleSheet, Dimensions, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableHighlight, StyleSheet, Dimensions } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 //Components
 import Botao from '../../components/Botao';
@@ -12,7 +12,6 @@ import TextoStyle from '../../assets/styles/texto';
 import FormStyle from '../../assets/styles/forms';
 //Redux
 import { alertaAction } from '../../store/actions/alerta';
-import { usuarioAction } from '../../store/actions/usuario';
 import { carregandoAction } from '../../store/actions/carregando';
 import { connect } from 'react-redux';
 
@@ -48,7 +47,6 @@ class Login extends React.Component {
       await AsyncStorage.setItem('@DiscoteriaApp:id', res.id);
       await AsyncStorage.setItem('@DiscoteriaApp:email', res.email);
       await AsyncStorage.setItem('@DiscoteriaApp:nome', res.nome);
-      this.props.dispatch(usuarioAction(true, res.nome, res.email, res.id, res.token));
       this.fechaCarregando();
       console.log("login: ", res)
     }
