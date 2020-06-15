@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 //Screens
 import CriarConta from './src/screens/CriarConta';
 import Login from './src/screens/Login';
+import MinhaColecao from './src/screens/MinhaColecao';
 //Redux
 import { Provider } from 'react-redux';
 import store from './src/store';
@@ -14,6 +15,10 @@ import store from './src/store';
 const Stack = createStackNavigator();
 
 class App extends React.Component {
+
+  state = {
+    logado: 'carregando'
+  }
 
   constructor(props) {
     super(props)
@@ -23,20 +28,25 @@ class App extends React.Component {
     try {
       const token = await AsyncStorage.getItem('@DiscoteriaApp:token');
       if( token ) {
-        return true
+        console.log("Verifica Token: true");
+        this.setState({
+          logado: true
+        })
       } else {
-        console.log("Verifica Token: false");
-        return false
+        this.setState({
+          logado: false
+        })
       }
     }
     catch (err) {
       console.log("Verifica Token: false - ", err);
-      return false
+      this.setState({
+        logado: false
+      })
     }
   }
 
   componentDidMount() {
-    console.log(this.props)
     this.verificaToken()
   }
 
@@ -45,15 +55,23 @@ class App extends React.Component {
     return (
 
       <>
-      <StatusBar barStyle = "dark-content" />
-      <Provider store = { store }>
-        <NavigationContainer>
-          <Stack.Navigator headerMode = "null" initialRouteName = "CriarConta">
-            <Stack.Screen name = "CriarConta" component = { CriarConta } />
-            <Stack.Screen name = "Login" component = { Login } />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </Provider>
+        <StatusBar barStyle = "dark-content" />
+        <Provider store = { store }>
+          <NavigationContainer>
+            <Stack.Navigator headerMode = "null">
+              { this.state.logado ? (
+                <>
+                  <Stack.Screen name = "MinhaColecao" component = { MinhaColecao } />
+                </>
+              ) : (
+                <>
+                  <Stack.Screen name = "CriarConta" component = { CriarConta } />
+                  <Stack.Screen name = "Login" component = { Login } />
+                </>
+              ) }
+            </Stack.Navigator>
+          </NavigationContainer>
+        </Provider>
       </>
 
     );
