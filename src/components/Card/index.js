@@ -1,35 +1,37 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
 //Styles
 import Cores from '../../assets/styles/cores';
 
 const Card = (props) => {
   console.log(props.image)
   return (
-    <View style = { styles.card }>
-      {props.capa ? (
-        <Image
-          source={{ uri: `${props.capa}`,}}
-          style = { styles.capaAlbum }
-        />
-      ) : (
-        <Image
-          source = { require('../../assets/images/album.png') }
-          style = { styles.capaAlbum }
-        />
-      )}
-      <View style = { styles.cardConteudo } >
-        <Text style = { styles.nomeAlbum }>
-          { props.album }
-        </Text>
-        <Text style = { styles.nomeArtista }>
-          { props.artista }
-        </Text>
-        <Text style = { styles.anoAlbum }>
-          { props.ano }
-        </Text>
+    <TouchableHighlight>
+      <View style = { styles.card }>
+          {props.capa ? (
+            <Image
+              source={{ uri: `${props.capa}`,}}
+              style = { styles.capaAlbum }
+            />
+          ) : (
+            <Image
+              source = { require('../../assets/images/album.png') }
+              style = { styles.capaAlbum }
+            />
+          )}
+          <View style = { styles.cardConteudo } >
+            <Text style = { styles.nomeAlbum }>
+              { props.album }
+            </Text>
+            <Text style = { styles.nomeArtista }>
+              { props.artista }
+            </Text>
+            <Text style = { styles.anoAlbum }>
+              { props.ano }
+            </Text>
+          </View>
       </View>
-    </View>
+    </TouchableHighlight>
   )
 }
 

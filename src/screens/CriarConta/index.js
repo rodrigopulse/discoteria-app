@@ -28,7 +28,7 @@ class CriarConta extends React.Component {
       const token = await AsyncStorage.getItem('@DiscoteriaApp:token');
       if( token ) {
         const token = await AsyncStorage.getItem('@DiscoteriaApp:token');
-        const id = await AsyncStorage.getItem('@DiscoteriaApp:id', res.id);
+        const id = await AsyncStorage.getItem('@DiscoteriaApp:id');
         const email = await AsyncStorage.getItem('@DiscoteriaApp:email');
         const nome = await AsyncStorage.getItem('@DiscoteriaApp:nome');
         this.props.dispatch( usuarioAction( true, nome, email, id, token ) );
@@ -36,10 +36,12 @@ class CriarConta extends React.Component {
         this.props.navigation.replace( 'MinhaColecao' )
       } else {
         this.fechaCarregando();
+        this.props.dispatch( usuarioAction(false, '', '', '', '') )
       }
     }
     catch (err) {
       this.fechaCarregando();
+      this.props.dispatch( usuarioAction(false, '', '', '', '') )
       console.log("Verifica Token: false - ", err);
     }
   }
