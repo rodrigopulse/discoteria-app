@@ -1,14 +1,24 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 //Styles
 import Cores from '../../assets/styles/cores';
 
 const Card = (props) => {
-  console.log(props.image)
+
+  const navigation = useNavigation();
+
   return (
-    <TouchableHighlight>
+
+    <TouchableHighlight
+      onPress={() => {
+        navigation.replace("Album", { id: props.id });
+      }}
+    >
+
       <View style = { styles.card }>
-          {props.capa ? (
+
+          { props.capa ? (
             <Image
               source={{ uri: `${props.capa}`,}}
               style = { styles.capaAlbum }
@@ -19,6 +29,7 @@ const Card = (props) => {
               style = { styles.capaAlbum }
             />
           )}
+
           <View style = { styles.cardConteudo } >
             <Text style = { styles.nomeAlbum }>
               { props.album }
@@ -30,7 +41,9 @@ const Card = (props) => {
               { props.ano }
             </Text>
           </View>
+
       </View>
+
     </TouchableHighlight>
   )
 }

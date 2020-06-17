@@ -12,7 +12,7 @@ class MinhaColecao extends Component {
     return (
 
       <ScrollView style = { GridStyle.container }>
-        <Card album = "Sgt Pepper’s Lonely Hearts Club Band" artista = "The Beatles" ano = "1970" />
+        <Card album = "Sgt Pepper’s Lonely Hearts Club Band" artista = "The Beatles" ano = "1970" id = "1234" />
       </ScrollView>
 
     )
