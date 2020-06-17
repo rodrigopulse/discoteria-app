@@ -13,6 +13,7 @@ import FormStyle from '../../assets/styles/forms';
 //Redux
 import { alertaAction } from '../../store/actions/alerta';
 import { carregandoAction } from '../../store/actions/carregando';
+import { usuarioAction } from '../../store/actions/usuario';
 import { connect } from 'react-redux';
 
 class Login extends React.Component {
@@ -48,6 +49,8 @@ class Login extends React.Component {
       await AsyncStorage.setItem('@DiscoteriaApp:email', res.email);
       await AsyncStorage.setItem('@DiscoteriaApp:nome', res.nome);
       this.fechaCarregando();
+      this.props.dispatch( usuarioAction(true, res.nome, res.email, res.id, res.token) );
+      this.props.navigation.navigate( 'MinhaColecao' )
       console.log("login: ", res)
     }
     catch(err) {

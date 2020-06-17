@@ -23,6 +23,27 @@ class CriarConta extends React.Component {
     super(props)
   }
 
+  verificaToken = async () => {
+    try {
+      const token = await AsyncStorage.getItem('@DiscoteriaApp:token');
+      if( token ) {
+        const token = await AsyncStorage.getItem('@DiscoteriaApp:token');
+        const id = await AsyncStorage.getItem('@DiscoteriaApp:id', res.id);
+        const email = await AsyncStorage.getItem('@DiscoteriaApp:email');
+        const nome = await AsyncStorage.getItem('@DiscoteriaApp:nome');
+        this.props.dispatch( usuarioAction( true, nome, email, id, token ) );
+        this.fechaCarregando();
+        this.props.navigation.replace( 'MinhaColecao' )
+      } else {
+        this.fechaCarregando();
+      }
+    }
+    catch (err) {
+      this.fechaCarregando();
+      console.log("Verifica Token: false - ", err);
+    }
+  }
+
   abreAlerta = ( mensagem ) => {
     this.props.dispatch( alertaAction(true, 'erro', mensagem) );
   }
@@ -91,7 +112,8 @@ class CriarConta extends React.Component {
   }
 
   componentDidMount() {
-    this.fechaCarregando()
+    this.abreCarregando();
+    this.verificaToken();
   }
 
   render () {
