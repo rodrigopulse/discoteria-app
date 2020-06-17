@@ -98,7 +98,7 @@ class CriarConta extends React.Component {
 
     return (
 
-      <View style = { GridStyle.container }>
+      <View style = { GridStyle.containerDeslogado }>
 
         <ScrollView style = { styles.containerContentLogin } >
 

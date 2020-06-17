@@ -64,7 +64,7 @@ class Login extends React.Component {
 
     return (
 
-      <View style = { GridStyle.container }>
+      <View style = { GridStyle.containerDeslogado }>
 
         <View style = { styles.containerContentLogin } >
 

@@ -1,11 +1,14 @@
 
 import * as React from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, View, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-community/async-storage';
 //Components
 import Carregando from './src/components/Carregando';
+import Header from './src/components/Header';
+import Menu from './src/components/Menu';
+import Alerta from './src/components/Alerta';
 //Screens
 import CriarConta from './src/screens/CriarConta';
 import Login from './src/screens/Login';
@@ -33,7 +36,7 @@ class App extends React.Component {
         this.setState({
           logado: "logado"
         })
-        console.log("Verifica Token: true");
+        store.dispatch( usuarioAction( true, '', '', '' ) )
       } else {
         console.log("Verifica Token: false");
         this.setState({
@@ -49,12 +52,13 @@ class App extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.verificaToken()
-  }
+  componentDidMount() { this.verificaToken() }
 
   render() {
-
+    if(this.state.logado == "carregando") {
+      <View style = { styles.carregandoLogin } >
+      </View>
+    }
     return (
 
       <>
@@ -74,6 +78,9 @@ class App extends React.Component {
               ) }
             </Stack.Navigator>
           </NavigationContainer>
+          <Header />
+          <Menu />
+          <Alerta />
           <Carregando />
         </Provider>
       </>
@@ -83,5 +90,17 @@ class App extends React.Component {
   }
 
 }
+
+const styles = StyleSheet.create({
+  carregandoLogin: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: '#fff',
+    zIndex: 10,
+    left: 0,
+    top: 0,
+    position: 'absolute'
+  },
+})
 
 export default App;
