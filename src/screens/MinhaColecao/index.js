@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { ScrollView, Text } from 'react-native'
+//Components
+import Card from '../../components/Card';
 //Styles
 import GridStyle from '../../assets/styles/grid';
 
@@ -10,7 +12,7 @@ class MinhaColecao extends Component {
     return (
 
       <ScrollView style = { GridStyle.container }>
-        <Text>Minha Coleção</Text>
+        <Card album = "Sgt Pepper’s Lonely Hearts Club Band" artista = "The Beatles" ano = "1970" />
       </ScrollView>
 
     )
