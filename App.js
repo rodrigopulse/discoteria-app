@@ -13,6 +13,7 @@ import Alerta from './src/components/Alerta';
 import CriarConta from './src/screens/CriarConta';
 import Login from './src/screens/Login';
 import MinhaColecao from './src/screens/MinhaColecao';
+import Album from './src/screens/Album';
 //Redux
 import { Provider } from 'react-redux';
 import store from './src/store';
@@ -36,6 +37,7 @@ class App extends React.Component {
               <Stack.Screen name = "CriarConta" component = { CriarConta } />
               <Stack.Screen name = "Login" component = { Login } />
               <Stack.Screen name = "MinhaColecao" component = { MinhaColecao } />
+              <Stack.Screen name = "Album" component = { Album } />
             </Stack.Navigator>
           </NavigationContainer>
           <Header />

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { ScrollView, Text, View } from 'react-native'
 //Redux
 import { connect } from 'react-redux';
+import { carregandoAction } from '../../store/actions/carregando';
 //Components
 import Card from '../../components/Card';
 //API
@@ -9,6 +10,7 @@ import Album from '../../api/albuns';
 const album = new Album();
 //Styles
 import GridStyle from '../../assets/styles/grid';
+import TextoStyle from '../../assets/styles/texto';
 
 class MinhaColecao extends Component {
 
@@ -26,13 +28,23 @@ class MinhaColecao extends Component {
       this.setState({
         colecao: res.data.data[0]
       })
-      console.log("Coleçao: ", this.state.colecao)
+      this.fechaCarregando();
     })
     .catch( () => {
+      this.fechaCarregando();
     })
   }
 
+  abreCarregando = () => {
+    this.props.dispatch( carregandoAction( true ) )
+  }
+
+  fechaCarregando = () => {
+    this.props.dispatch( carregandoAction( false ) )
+  }
+
   componentDidMount() {
+    this.abreCarregando();
     this.getColecao( this.props.usuario.id )
   }
 
@@ -41,8 +53,17 @@ class MinhaColecao extends Component {
     return (
 
       <ScrollView style = { GridStyle.container }>
-        { this.state.colecao.length === 0 ? ( null ) : (
+
+        { this.state.colecao.length === 0 ? (
+
           <View>
+            <Text style = { TextoStyle.textoBranco }>Nenhum disco na sua coleção</Text>
+          </View>
+
+         ) : (
+
+          <View>
+
             {this.state.colecao.albuns.map( (item, key) =>
               <Card
                 key = { key }
@@ -52,8 +73,11 @@ class MinhaColecao extends Component {
                 capa = { item.capa }
                 id = { item._id } />
             )}
+
           </View>
+
         )}
+
       </ScrollView>
 
     )
