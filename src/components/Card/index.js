@@ -12,7 +12,7 @@ const Card = (props) => {
 
     <TouchableHighlight
       onPress={() => {
-        navigation.replace("Album", { id: props.id });
+        navigation.replace("Disco", { id: props.id });
       }}
     >
 

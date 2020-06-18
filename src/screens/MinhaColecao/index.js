@@ -64,7 +64,7 @@ class MinhaColecao extends Component {
 
           <View>
 
-            {this.state.colecao.albuns.map( (item, key) =>
+            {this.state.colecao.albuns.map( ( item, key ) =>
               <Card
                 key = { key }
                 album = { item.nome }
