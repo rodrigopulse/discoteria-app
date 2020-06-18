@@ -20,7 +20,7 @@ const Card = (props) => {
 
           { props.capa ? (
             <Image
-              source={{ uri: `${props.capa}`,}}
+              source = {{ uri: `http://ec2-18-191-68-238.us-east-2.compute.amazonaws.com:9060/imagens/albuns/${props.capa}`}}
               style = { styles.capaAlbum }
             />
           ) : (
