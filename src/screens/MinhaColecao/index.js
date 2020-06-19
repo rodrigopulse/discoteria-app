@@ -25,8 +25,9 @@ class MinhaColecao extends Component {
   getColecao = ( idUsuario ) => {
     album.getColecao( idUsuario )
     .then( ( res ) => {
+      console.log(res.data)
       this.setState({
-        colecao: res.data.data[0]
+        colecao: res.data
       })
       this.fechaCarregando();
     })
@@ -68,10 +69,10 @@ class MinhaColecao extends Component {
               <Card
                 key = { key }
                 album = { item.nome }
-                artista = { item.artistas[0].nome }
+                artista = { item.artista }
                 ano = { item.ano }
                 capa = { item.capa }
-                id = { item._id } />
+                id = { item.id } />
             )}
 
           </View>

@@ -23,10 +23,10 @@ class Disco extends Component {
     const idAlbum = this.props.route.params.id;
     album.getAlbum(idAlbum)
     .then( (res) => {
+      let album = res.data
       this.setState({
-        capa: res.data.data[0].capa,
+        capa: album.capa,
       });
-      console.log(this.state.capa)
       this.fechaCarregando();
     })
     .catch( (res) => {

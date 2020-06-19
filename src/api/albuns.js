@@ -4,7 +4,7 @@ export default class Album {
   getColecao( idUsuario ) {
     return new Promise ( (resolve, reject) => {
       axios({
-        url: `http://ec2-18-191-68-238.us-east-2.compute.amazonaws.com:9060/colecao/id?id=${idUsuario}`,
+        url: `http://ec2-18-191-68-238.us-east-2.compute.amazonaws.com:9060/colecao/id/${idUsuario}`,
         method: "GET"
       })
       .then( ( res ) => { resolve( res ) } )
@@ -14,7 +14,7 @@ export default class Album {
   getAlbum( idAlbum ) {
     return new Promise ( (resolve, reject) => {
       axios({
-        url: `http://ec2-18-191-68-238.us-east-2.compute.amazonaws.com:9060/albuns/id/?id=${idAlbum}`,
+        url: `http://ec2-18-191-68-238.us-east-2.compute.amazonaws.com:9060/albuns/id/${idAlbum}`,
         method: "GET"
       })
       .then( ( res ) => { resolve( res ) } )
