@@ -9,6 +9,12 @@ export default TextoStyle = StyleSheet.create({
     lineHeight: 33
   },
   textoBranco: {
+    fontWeight: '400',
+    fontSize: 16,
+    color: '#ffffff'
+  },
+  textoBrancoNegrito: {
+    fontWeight: '700',
     fontSize: 16,
     color: '#ffffff'
   }
