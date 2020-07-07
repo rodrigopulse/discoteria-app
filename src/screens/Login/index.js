@@ -45,13 +45,11 @@ class Login extends React.Component {
     try {
       const res = await usuario.login( { email: this.state.email, senha: this.state.senha } );
       await AsyncStorage.setItem('@DiscoteriaApp:token', res.token);
-      await AsyncStorage.setItem('@DiscoteriaApp:id', res.id);
+      await AsyncStorage.setItem('@DiscoteriaApp:id', res._id);
       await AsyncStorage.setItem('@DiscoteriaApp:email', res.email);
-      await AsyncStorage.setItem('@DiscoteriaApp:nome', res.nome);
       this.fechaCarregando();
-      this.props.dispatch( usuarioAction(true, res.nome, res.email, res.id, res.token) );
+      await this.props.dispatch( usuarioAction(true, res.email, res._id, res.token) );
       this.props.navigation.navigate( 'MinhaColecao' )
-      console.log("login: ", res)
     }
     catch(err) {
       this.abreAlerta( err.response.data.erro )

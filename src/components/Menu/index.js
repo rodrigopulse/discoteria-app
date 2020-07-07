@@ -83,9 +83,8 @@ class Menu extends Component  {
     await AsyncStorage.removeItem('@DiscoteriaApp:token');
     await AsyncStorage.removeItem('@DiscoteriaApp:id');
     await AsyncStorage.removeItem('@DiscoteriaApp:email');
-    await AsyncStorage.removeItem('@DiscoteriaApp:nome');
 
-    this.props.dispatch( usuarioAction(false, '', '', '', '') );
+    this.props.dispatch( usuarioAction(false, '', '', '') );
     this.props.dispatch(menuAction(false));
 
     RootNavigation.navigate('Login');

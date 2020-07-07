@@ -30,18 +30,17 @@ class CriarConta extends React.Component {
         const token = await AsyncStorage.getItem('@DiscoteriaApp:token');
         const id = await AsyncStorage.getItem('@DiscoteriaApp:id');
         const email = await AsyncStorage.getItem('@DiscoteriaApp:email');
-        const nome = await AsyncStorage.getItem('@DiscoteriaApp:nome');
-        this.props.dispatch( usuarioAction( true, nome, email, id, token ) );
+        this.props.dispatch( usuarioAction( true, email, id, token ) );
         this.fechaCarregando();
         this.props.navigation.replace( 'MinhaColecao' )
       } else {
         this.fechaCarregando();
-        this.props.dispatch( usuarioAction(false, '', '', '', '') )
+        this.props.dispatch( usuarioAction(false, '', '', '') )
       }
     }
     catch (err) {
       this.fechaCarregando();
-      this.props.dispatch( usuarioAction(false, '', '', '', '') )
+      this.props.dispatch( usuarioAction(false, '', '', '') )
       console.log("Verifica Token: false - ", err);
     }
   }
@@ -101,10 +100,9 @@ class CriarConta extends React.Component {
     try {
       const res = await usuario.login(data);
       await AsyncStorage.setItem('@DiscoteriaApp:token', res.token);
-      await AsyncStorage.setItem('@DiscoteriaApp:id', res.id);
+      await AsyncStorage.setItem('@DiscoteriaApp:id', res._id);
       await AsyncStorage.setItem('@DiscoteriaApp:email', res.email);
-      await AsyncStorage.setItem('@DiscoteriaApp:nome', res.nome);
-      this.props.dispatch(usuarioAction(true, res.nome, res.email, res.id, res.token));
+      this.props.dispatch(usuarioAction(true, res.email, res._id, res.token));
       this.fechaCarregando();
     }
     catch(err) {

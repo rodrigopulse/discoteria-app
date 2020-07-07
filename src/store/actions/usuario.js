@@ -1,8 +1,7 @@
-export function usuarioAction(logado, nome, email, id, token) {
+export function usuarioAction(logado, email, id, token) {
   return {
     type: "USUARIO",
     logado,
-    nome,
     email,
     id,
     token

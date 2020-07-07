@@ -22,13 +22,14 @@ class MinhaColecao extends Component {
     super( props )
   }
 
-  getColecao = ( idUsuario ) => {
-    album.getColecao( idUsuario )
+  getColecao = ( idUsuario, token ) => {
+    album.getColecao( idUsuario, token )
     .then( ( res ) => {
-      console.log(res.data)
-      this.setState({
-        colecao: res.data
-      })
+      if(res.data != null) {
+        this.setState({
+          colecao: res.data
+        })
+      }
       this.fechaCarregando();
     })
     .catch( () => {
@@ -46,7 +47,7 @@ class MinhaColecao extends Component {
 
   componentDidMount() {
     this.abreCarregando();
-    this.getColecao( this.props.usuario.id )
+    this.getColecao( this.props.usuario.id, this.props.usuario.token )
   }
 
   render() {

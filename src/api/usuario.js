@@ -4,7 +4,7 @@ export default class Usuario {
   criarConta( data ) {
     return new Promise ( (resolve, reject) => {
       axios({
-        url: `http://ec2-18-191-68-238.us-east-2.compute.amazonaws.com:9060/usuarios/criar`,
+        url: `http://10.0.3.2:3333/usuario/criar`,
         data: data,
         method: "POST"
       })
@@ -15,7 +15,7 @@ export default class Usuario {
   login( data ) {
     return new Promise ( (resolve, reject) => {
       axios({
-        url: `http://ec2-18-191-68-238.us-east-2.compute.amazonaws.com:9060/usuarios/login`,
+        url: `http://10.0.3.2:3333/usuario/login`,
         data: data,
         method: "POST"
       })
