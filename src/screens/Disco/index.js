@@ -22,8 +22,10 @@ class Disco extends Component {
 
   getAlbum = () => {
     const idAlbum = this.props.route.params.id;
+    console.log(idAlbum)
     album.getAlbum(idAlbum)
     .then( (res) => {
+      console.log(res)
       let album = res.data
       console.log(album)
       this.setState({
@@ -32,8 +34,8 @@ class Disco extends Component {
         artista: album.artista,
         ano: album.ano,
         genero: album.genero,
-        ladoA: album.ladoA,
-        ladoB: album.ladoB
+        ladoA: album.ladoa,
+        ladoB: album.ladob
       });
       this.fechaCarregando();
     })

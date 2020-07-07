@@ -19,7 +19,7 @@ export default class Album {
   getAlbum( idAlbum ) {
     return new Promise ( (resolve, reject) => {
       axios({
-        url: `http://10.0.3.2:3333/albuns/id/${idAlbum}`,
+        url: `http://10.0.3.2:3333/album/id/${idAlbum}`,
         method: "GET"
       })
       .then( ( res ) => { resolve( res ) } )

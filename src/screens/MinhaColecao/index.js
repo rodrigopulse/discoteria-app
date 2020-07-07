@@ -70,10 +70,10 @@ class MinhaColecao extends Component {
               <Card
                 key = { key }
                 album = { item.nome }
-                artista = { item.artista }
+                artista = { item.artistas.nome }
                 ano = { item.ano }
                 capa = { item.capa }
-                id = { item.id } />
+                id = { item._id } />
             )}
 
           </View>
